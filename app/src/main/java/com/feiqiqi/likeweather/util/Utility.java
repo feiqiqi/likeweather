@@ -5,6 +5,8 @@ import android.text.TextUtils;
 import com.feiqiqi.likeweather.db.City;
 import com.feiqiqi.likeweather.db.County;
 import com.feiqiqi.likeweather.db.Province;
+import com.feiqiqi.likeweather.gson.Weather;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -92,4 +94,23 @@ public class Utility {
 
         return false;
     }
+
+
+    /**
+     * 用于解析天气JSON数据
+     */
+    public static Weather handleWeatheResponse(String response) {
+
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray jsonArray = jsonObject.getJSONArray("HeWeather");
+            String weatherContent = jsonArray.getJSONObject(0).toString();
+            return new Gson().fromJson(weatherContent, Weather.class);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
 }
