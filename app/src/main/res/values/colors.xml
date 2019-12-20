@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#B0C4DE</color>
     <color name="colorAccent">#191970</color>
     <color name="textColor">#FAFAFA</color>
+    <color name="colorcd_day">#6000</color>
 </resources>

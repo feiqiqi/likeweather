@@ -1,5 +1,6 @@
 package com.feiqiqi.likeweather;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -21,11 +22,14 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.feiqiqi.likeweather.gson.Forecast;
 import com.feiqiqi.likeweather.gson.Weather;
+import com.feiqiqi.likeweather.service.UpdateService;
 import com.feiqiqi.likeweather.util.HttpUtil;
 import com.feiqiqi.likeweather.util.Utility;
 import com.gyf.immersionbar.ImmersionBar;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -77,6 +81,8 @@ public class WeatherActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }*/
         setContentView(R.layout.activity_weather);
+
+
 
         //下拉刷新实例及进度条颜色
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
@@ -136,6 +142,7 @@ public class WeatherActivity extends AppCompatActivity {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                //loadBingImg();
                 requestWeather(mWeatherId);
             }
         });
@@ -280,5 +287,9 @@ public class WeatherActivity extends AppCompatActivity {
         carWashTxt.setText(carWash);
         sportTxt.setText(sport);
         weatherScrollView.setVisibility(View.VISIBLE);
+
+        //启动后台定时自动刷新天气数据
+        Intent intent = new Intent(this, UpdateService.class);
+        startService(intent);
     }
 }
