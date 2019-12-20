@@ -35,7 +35,7 @@ public class Forecast {
     }
 
     public class More {
-        @SerializedName("tet_d")
+        @SerializedName("txt_d")
         public String info;
     }
 }
