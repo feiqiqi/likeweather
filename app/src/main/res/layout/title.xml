@@ -3,6 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize">
 
+    <Button
+        android:id="@+id/nav_btn"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:background="@mipmap/item1_before"
+        android:backgroundTint="@color/textColor" />
+
     <TextView
         android:id="@+id/city_title"
         android:layout_width="wrap_content"
